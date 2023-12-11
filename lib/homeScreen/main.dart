@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intro/addtodo/main.dart';
 import 'package:intro/homeScreen/widget/TodoContainer.dart';
 import 'package:intro/homeScreen/widget/sizedIcon.dart';
 
@@ -70,7 +71,9 @@ class _HomeScreenState extends State<HomeScreen> {
         margin: EdgeInsets.only(bottom: 15.0),
         child: FloatingActionButton(
           shape: CircleBorder(),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/addtodo');
+          },
           backgroundColor: Color.fromRGBO(9, 76, 154, 1.0),
           child: Icon(
             Icons.add,
