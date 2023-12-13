@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:intro/homeScreen/logic/todo.dart';
 import 'package:intro/homeScreen/widget/sizedIcon.dart';
 
 class TodoContainer extends StatelessWidget {
-  final String content;
-  const TodoContainer({super.key, required this.content});
+  final Todo todo;
+
+  const TodoContainer({super.key, required this.todo});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class TodoContainer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  content,
+                  todo.content,
                   style: TextStyle(fontSize: 22, fontFamily: 'Roboto'),
                 ),
                 Row(
@@ -46,7 +48,7 @@ class TodoContainer extends StatelessWidget {
               ],
             ),
             Text(
-              '02/12/2023-10:00Am',
+              '${todo.date}-${todo.time}Am',
               style: TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w700,

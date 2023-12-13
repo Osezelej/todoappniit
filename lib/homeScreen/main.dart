@@ -1,28 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:intro/addtodo/main.dart';
 import 'package:intro/homeScreen/widget/TodoContainer.dart';
 import 'package:intro/homeScreen/widget/sizedIcon.dart';
 
 import 'logic/todo.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final List<Todo> todos;
+  const HomeScreen({super.key, required this.todos});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Todo> Todos = [
-    Todo(id: '1', content: 'Buy Rice'),
-    Todo(id: '2', content: 'Buy kpoms'),
-    Todo(id: '3', content: 'Buy shaks and rands'),
-    Todo(id: '4', content: 'Buy tiny'),
-    Todo(id: '5', content: 'Buy AZ'),
-    Todo(id: '6', content: 'Buy house'),
-  ];
+  late List<Todo> Todos;
   @override
   Widget build(BuildContext context) {
+    Todos = widget.todos;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -60,8 +55,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: ListView(
-                children: Todos.map((e) => TodoContainer(content: e.content))
-                    .toList(),
+                children: Todos.isEmpty
+                    ? [
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Oops! no Todo here'),
+                              Text('Click on + to add todo')
+                            ],
+                          ),
+                        ),
+                      ]
+                    : Todos.map((e) => TodoContainer(todo: e)).toList(),
               ),
             )
           ],
